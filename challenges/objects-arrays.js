@@ -13,6 +13,10 @@ const tyrannosaurus={
   weight:'7000 kg',
   length:'12m',
   period:'Late Cretaceous',
+  roar:function(param){
+    console.log ('RAWERSRARARWERSARARARRRR!');
+  }
+
 }
 // stegosaurus, herbivorous, 2000kg, 9m, Late Jurassic
 const stegosaurus={
@@ -47,10 +51,9 @@ console.log(tyrannosaurus.period);
 
 
 // Create a new roar method for the tyrannosaurus.  When called, return "RAWERSRARARWERSARARARRRR!" Log the result.
-let roar=function(){
-  return 'RAWERSRARARWERSARARARRRR!';
-}
-console.log(tyrannosaurus.roar);
+
+
+console.log(tyrannosaurus.roar());
 
 
 // ==== Arrays ====
@@ -72,7 +75,7 @@ const graduates = [{"id":1,"first_name":"Cynde","university":"Missouri Southern 
 
 Once you have the new array created, sort the universities alphabetically and log the result. */
 const universities = [];
-// console.log(universities)
+
 for (let i=0;i<graduates.length;i++){
   let schools=graduates[i].university;
 universities.push(schools);
@@ -89,9 +92,8 @@ graduates.forEach((school,index)=>{
 The resulting contact information should have a space between the first name and the email information like this: 
 Name email@example.com
 
-Log the result of your new array. */
+// Log the result of your new array. */
 const contactInfo = [];
-// console.log(contactInfo);
 
 for (let i=0;i<graduates.length;i++){
   let cInfo=`${graduates[i].first_name} ${graduates[i].email}`;
@@ -103,14 +105,10 @@ graduates.forEach((info,index)=>{
 
 
 /* Request 3: Find out how many universities have the string "Uni" included in their name. Create a new array called uni that contains them all. Log the result. */
-let uni = [];
-// console.log(uni);
-for (let i=0;i<graduates.length;i++){
-  let str=graduates[i].university;
-  uni.push(graduates);
-}
-uni=graduates.filter((str)=>{
-  return(graduates.university==='Uni');
+
+let name='Uni';
+let uni=graduates.filter((item)=>{
+  return item.university.includes('Uni');
 });
 console.log(uni);
 
@@ -153,15 +151,14 @@ The zoos need a list of all their animal's names (names only, not scientific) co
 
 */
 
-const lowerCase = [];
-for (let i=0;i<zooAnimals.length;i++){
-  let aName=zooAnimals[i].animal_name;
-  lowerCase.push(zooAnimals[i].animal_name)
-}
-console.log(lowerCase);
-lowerCase.map(function toLower(item){
-  return item.toLowerCase();
+let lowerCase= zooAnimals.map(function toLower(item){
+  console.log(item.animal_name);
+   return item.animal_name.toLowerCase();
 });
+
+console.log(lowerCase);
+
+
 
 
 /* Request 3: .filter() 
@@ -169,10 +166,6 @@ lowerCase.map(function toLower(item){
 The zoos are concenred about animals with a lower population count. Find out which animals have a population less than 5.
 
 */
-// const lowerPopulation = [];
-// for (let i=0;i<zooAnimals.length;i++){
-//   let pop=zooAnimals[i].population;
-// }
 
 lowerPopulation=zooAnimals.filter((number)=>{
   return(number.population<5);
@@ -185,8 +178,7 @@ console.log(lowerPopulation);
 The zoos need to know their total animal population across the United States.  Find the total population from all the zoos using the .reduce() method.
 
 */
-// const populationTotal = 0;
-// console.log(populationTotal);
+
 
 populationTotal=zooAnimals.reduce((total,number)=>{
   return total+=number.population;
