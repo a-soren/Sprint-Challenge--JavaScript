@@ -7,28 +7,53 @@
 */
 
 // tyrannosaurus, carnivorous, 7000kg, 12m, Late Cretaceous
+const tyrannosaurus={
+  name:'tyrannosaurus',
+  diet:'carnivorous',
+  weight:'7000 kg',
+  length:'12m',
+  period:'Late Cretaceous',
+  roar:function(param){
+    console.log ('RAWERSRARARWERSARARARRRR!');
+  }
 
+}
 // stegosaurus, herbivorous, 2000kg, 9m, Late Jurassic
+const stegosaurus={
+  name:'stegosaurus',
+  diet:'herbivorous',
+  weight:'2000kg',
+  length:'9m',
+  period:'Late Jurassic',
+}
 
 // velociraptor, carnivorous, 15kg, 1.8m, Late Cretaceous
-
+const velociraptor={
+  name:'velociraptor',
+  diet:'carnivorous',
+  weight:'15 kg',
+  length:'1.8m',
+  period:'Late Cretaceous',
+}
 // Using your dinosaur objects, log answers to these questions:
 
 // How much did tyrannosaurus weigh?
-console.log();
+console.log(tyrannosaurus.weight);
 
 // What was the diet of a velociraptor?
-console.log();
+console.log(velociraptor.diet);
 
 // How long was a stegosaurus?
-console.log();
+console.log(stegosaurus.length);
 
 // What time period did tyrannosaurus live in?
-console.log();
+console.log(tyrannosaurus.period);
 
 
 // Create a new roar method for the tyrannosaurus.  When called, return "RAWERSRARARWERSARARARRRR!" Log the result.
-console.log();
+
+
+console.log(tyrannosaurus.roar());
 
 
 // ==== Arrays ====
@@ -50,20 +75,41 @@ const graduates = [{"id":1,"first_name":"Cynde","university":"Missouri Southern 
 
 Once you have the new array created, sort the universities alphabetically and log the result. */
 const universities = [];
-console.log(universities)
+
+for (let i=0;i<graduates.length;i++){
+  let schools=graduates[i].university;
+universities.push(schools);
+universities.sort();
+}
+graduates.forEach((school,index)=>{
+    console.log(universities);
+});
+
+
 
 /* Request 2: Create a new array called contactInfo that contains both first name and email of each student. 
 
 The resulting contact information should have a space between the first name and the email information like this: 
 Name email@example.com
 
-Log the result of your new array. */
+// Log the result of your new array. */
 const contactInfo = [];
-console.log(contactInfo);
+
+for (let i=0;i<graduates.length;i++){
+  let cInfo=`${graduates[i].first_name} ${graduates[i].email}`;
+  contactInfo.push(cInfo);
+}
+graduates.forEach((info,index)=>{
+    console.log(contactInfo);
+});
 
 
 /* Request 3: Find out how many universities have the string "Uni" included in their name. Create a new array called uni that contains them all. Log the result. */
-const uni = [];
+
+let name='Uni';
+let uni=graduates.filter((item)=>{
+  return item.university.includes('Uni');
+});
 console.log(uni);
 
 
@@ -89,7 +135,15 @@ The zoo wants to display both the scientific name and the animal name in front o
 
 */
 const animalNames = [];
-console.log(animalNames);
+for (let i=0;i<zooAnimals.length;i++){
+  let newArray=`Name: ${zooAnimals[i].animal_name} Scientific: ${zooAnimals[i].scientific_name}`;
+  animalNames.push(newArray);
+}
+
+zooAnimals.forEach((name,index)=>{
+  console.log(animalNames);
+})
+
 
 /* Request 2: .map()    
 
@@ -97,15 +151,26 @@ The zoos need a list of all their animal's names (names only, not scientific) co
 
 */
 
-const lowerCase = [];
-console.log(lowerCase); 
+let lowerCase= zooAnimals.map(function toLower(item){
+  console.log(item.animal_name);
+   return item.animal_name.toLowerCase();
+});
+
+console.log(lowerCase);
+
+
+
 
 /* Request 3: .filter() 
 
 The zoos are concenred about animals with a lower population count. Find out which animals have a population less than 5.
 
 */
-const lowerPopulation = [];
+
+lowerPopulation=zooAnimals.filter((number)=>{
+  return(number.population<5);
+
+});
 console.log(lowerPopulation);
 
 /* Request 4: .reduce() 
@@ -113,8 +178,14 @@ console.log(lowerPopulation);
 The zoos need to know their total animal population across the United States.  Find the total population from all the zoos using the .reduce() method.
 
 */
-const populationTotal = 0;
+
+
+populationTotal=zooAnimals.reduce((total,number)=>{
+  return total+=number.population;
+},0);
+
 console.log(populationTotal);
+
 
 
 /* 
